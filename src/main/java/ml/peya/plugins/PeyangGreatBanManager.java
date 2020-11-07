@@ -18,6 +18,7 @@ public class PeyangGreatBanManager extends JavaPlugin
     public static FileConfiguration config;
     public static Server server = null;
     public static boolean isAgent = false;
+    public static boolean isBungee = false;
     private static BanManagerAPI ban;
     private static PeyangGreatBanManager plugin;
     public Logger logger = getLogger();
@@ -46,11 +47,14 @@ public class PeyangGreatBanManager extends JavaPlugin
         saveDefaultConfig();
         config = getConfig();
 
+        isBungee = config.getBoolean("bungeecord");
+
         getCommand("ban").setExecutor(new CommandBan());
         getCommand("unban").setExecutor(new CommandUnban());
         getCommand("tempban").setExecutor(new CommandTempBan());
         getCommand("banhelp").setExecutor(new CommandHelp());
         getCommand("bans").setExecutor(new CommandBans());
+        getServer().getPluginManager().registerEvents(new Events(), this);
 
         logger.info("------[PeyangGreatBanManager]------");
 

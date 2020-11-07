@@ -13,6 +13,7 @@ error:
   invalidArgument: "%%red%%エラー：引数の数が不正です。/pgbm help でヘルプを見てください。"
   processing: "%%red%%エラー：現在処理中です。"
   alreadyBanned: "%%red%%エラー：対象プレイヤーは既にアクセスを禁止されています。"
+  notBanned: "%%red%%エラー：対象プレイヤーはアクセスを禁止されていません。"
   pgbm:
     notPage: "%%red%%エラー：表示できるものが何もありません！"
   bans:

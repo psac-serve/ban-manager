@@ -60,7 +60,7 @@ public class CommandBans implements CommandExecutor
         if (ErrorMessageSender.unPermMessage(sender, "pbgm.bans") || ErrorMessageSender.invalidLengthMessage(sender, args, 1, 2))
             return true;
 
-        if (args.length == 2 && !args[1].equals("-a"))
+        if (args.length == 2 && !args[0].equals("-a"))
         {
             sender.sendMessage(MessageEngine.get("error.invalidArgument"));
             return true;
@@ -73,7 +73,11 @@ public class CommandBans implements CommandExecutor
         if (page == 0)
             page = 1;
 
-        UUID player = PlayerUtils.getPlayerAllowOffline(args[0]);
+        UUID player;
+        if (args[0].equals("-a"))
+            player = PlayerUtils.getPlayerAllowOffline(args[1]);
+        else
+            player = PlayerUtils.getPlayerAllowOffline(args[0]);
         if (player == null)
         {
             sender.sendMessage(MessageEngine.get("error.playerNotFound"));
