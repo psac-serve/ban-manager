@@ -24,7 +24,7 @@ public class CommandTempBan implements CommandExecutor
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
     {
-        if (ErrorMessageSender.unPermMessage(sender, "pgbm.tempban"))
+        if (ErrorMessageSender.unPermMessage(sender, "pybans.tempban"))
             return true;
         if (args.length < 2)
         {

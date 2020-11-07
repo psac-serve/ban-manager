@@ -10,11 +10,11 @@ error:
   playerNotFound: "%%red%%エラー：対象プレイヤーが見つかりませんでした。"
   unknownSQLError: "%%red%%エラー：不明なSQLエラーが発生しました。運営に報告しています。"
   notHavePermission: "%%red%%エラー：権限がありません！"
-  invalidArgument: "%%red%%エラー：引数の数が不正です。/pgbm help でヘルプを見てください。"
+  invalidArgument: "%%red%%エラー：引数の数が不正です。/banhelp でヘルプを見てください。"
   processing: "%%red%%エラー：現在処理中です。"
   alreadyBanned: "%%red%%エラー：対象プレイヤーは既にアクセスを禁止されています。"
   notBanned: "%%red%%エラー：対象プレイヤーはアクセスを禁止されていません。"
-  pgbm:
+  pybans:
     notPage: "%%red%%エラー：表示できるものが何もありません！"
   bans:
     unknownSearchType: "%%red%%エラー：検索タイプが不明です。"

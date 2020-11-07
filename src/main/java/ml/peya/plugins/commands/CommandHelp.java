@@ -19,7 +19,7 @@ public class CommandHelp implements CommandExecutor
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
     {
         if (ErrorMessageSender.invalidLengthMessage(sender, args, 0, 1) ||
-                ErrorMessageSender.unPermMessage(sender, "pgbm.help"))
+                ErrorMessageSender.unPermMessage(sender, "pybans.help"))
             return true;
 
         final boolean[] flag = {false};
@@ -30,14 +30,14 @@ public class CommandHelp implements CommandExecutor
             if (MessageEngine.get("command.help." + args[0]) != null)
                 sender.sendMessage(MessageEngine.get("command.help." + args[0]));
             else
-                sender.sendMessage(MessageEngine.get("error.pgbm.help"));
+                sender.sendMessage(MessageEngine.get("error.pybans.help"));
             return true;
         }
 
         ArrayList<String> nodes = new ArrayList<>(Arrays.asList("ban", "tempban", "unban", "banhelp", "bans"));
 
         nodes.parallelStream()
-                .filter((s) -> sender.hasPermission("pgbm." + s))
+                .filter((s) -> sender.hasPermission("pybans." + s))
                 .forEach((s) -> {
                     sender.spigot().sendMessage(new ComponentBuilder(MessageEngine.get("command.shelp." + s))
                             .event(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(ChatColor.AQUA + "クリックして詳細を表示").create()))
@@ -46,7 +46,7 @@ public class CommandHelp implements CommandExecutor
                     flag[0] = true;
                 });
         if (!flag[0])
-            sender.sendMessage(MessageEngine.get("error.pgbm.notPage"));
+            sender.sendMessage(MessageEngine.get("error.pybans.notPage"));
         return true;
     }
 }

@@ -44,11 +44,11 @@ public class Decorations
                 player.getWorld().spawnParticle(
                         Particle.FLAME,
                         player.getLocation().add(0, 0.5, 0),
-                        30,
+                        15,
                         0,
                         0,
                         0,
-                        0.65
+                        0.2
                 );
 
                 sec[0] += 5;
@@ -302,11 +302,11 @@ public class Decorations
     public static void decoration(Player player)
     {
         if (config.getBoolean("decoration.flame"))
-            flame(player, Math.multiplyExact(config.getInt("kick.delay"), 20));
+            flame(player, Math.multiplyExact(config.getInt("kick.lag"), 20));
         if (config.getBoolean("decoration.circle"))
-            magic(player, Math.multiplyExact(config.getInt("kick.delay"), 20));
+            magic(player, Math.multiplyExact(config.getInt("kick.lag"), 20));
         if (config.getBoolean("decoration.laser"))
-            laser(player, Math.multiplyExact(config.getInt("kick.delay"), 20));
+            laser(player, Math.multiplyExact(config.getInt("kick.lag"), 20));
     }
 
 }

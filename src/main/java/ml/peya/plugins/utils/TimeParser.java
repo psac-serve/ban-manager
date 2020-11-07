@@ -1,5 +1,7 @@
 package ml.peya.plugins.utils;
 
+import ml.peya.plugins.Bungee.BungeeMessageEngine;
+
 import java.util.Calendar;
 import java.util.Date;
 import java.util.regex.Matcher;
@@ -8,10 +10,31 @@ import java.util.regex.Pattern;
 public class TimeParser
 {
 
-    private static final String d = MessageEngine.get("base.day");
-    private static final String h = MessageEngine.get("base.hour");
-    private static final String m = MessageEngine.get("base.minutes");
-    private static final String s = MessageEngine.get("base.seconds");
+    private static String d;
+    private static String h;
+    private static String m;
+    private static String s;
+
+    static
+    {
+        try
+        {
+            Class.forName("org.bukkit.plugin.Plugin");
+            d = MessageEngine.get("base.day");
+            h = MessageEngine.get("base.hour");
+            m = MessageEngine.get("base.minutes");
+            s = MessageEngine.get("base.seconds");
+        }
+        catch (Exception ignored)
+        {
+            d = BungeeMessageEngine.get("base.day");
+            h = BungeeMessageEngine.get("base.hour");
+            m = BungeeMessageEngine.get("base.minutes");
+            s = BungeeMessageEngine.get("base.seconds");
+        }
+
+    }
+
     static String regex = "^[0-9]+((year|y)|(month|mo)|(day|d)|(hour|h)|(minute|min|m)|(second|sec|s))(s)?$";
 
     public static Date convert(String... args)

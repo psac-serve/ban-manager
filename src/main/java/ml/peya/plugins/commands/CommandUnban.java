@@ -21,7 +21,7 @@ public class CommandUnban implements CommandExecutor
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
     {
-        if (ErrorMessageSender.unPermMessage(sender, "pgbm.unban"))
+        if (ErrorMessageSender.unPermMessage(sender, "pybans.unban"))
             return true;
 
         if (args.length < 1)

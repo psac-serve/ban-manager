@@ -144,7 +144,7 @@ public class BAN implements BanManagerAPI
         {
             for (Player s : Bukkit.getOnlinePlayers())
             {
-                if (s.hasPermission("pgbm.notification"))
+                if (s.hasPermission("pybans.notification"))
                     MessageEngine.get("kick.broadcast");
             }
         }
@@ -162,24 +162,24 @@ public class BAN implements BanManagerAPI
             player.kickPlayer(message);
 
         String finalMessage = message;
+        ban(player.getUniqueId(), bannedby, reason, hasStaff, date);
+
         new BukkitRunnable()
         {
             @Override
             public void run()
             {
                 if (msgDelay)
-                    Bukkit.broadcast(MessageEngine.get("kick.broadcast"), "pgbm.notification");
+                    Bukkit.broadcast(MessageEngine.get("kick.broadcast"), "pybans.notification");
                 if (config.getBoolean("decoration.lightning"))
                     Decorations.lighting(player);
-
-                ban(player.getUniqueId(), bannedby, reason, hasStaff, date);
 
                 if (player.isOnline())
                     player.kickPlayer(finalMessage);
 
                 this.cancel();
             }
-        }.runTaskLater(PeyangGreatBanManager.getPlugin(), Math.multiplyExact(PeyangGreatBanManager.config.getInt("decorations.delay"), 20));
+        }.runTaskLater(PeyangGreatBanManager.getPlugin(), Math.multiplyExact(PeyangGreatBanManager.config.getInt("kick.lag"), 20));
     }
 
 }

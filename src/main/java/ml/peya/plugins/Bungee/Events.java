@@ -14,6 +14,21 @@ import java.util.HashMap;
 
 public class Events implements Listener
 {
+
+    public static String convertFromDate(Date date)
+    {
+        long now = new Date().getTime();
+        long ago = date.getTime();
+        long diff = ago - now;
+
+        long day = diff / 86400000L;
+        long hour = diff / 3600000L % 24L;
+        long minute = diff / 60000L % 60L;
+        long second = diff / 1000L % 60L;
+
+        return day + BungeeMessageEngine.get("base.day") + hour + BungeeMessageEngine.get("base.hour") + minute + BungeeMessageEngine.get("base.mintues") + second + BungeeMessageEngine.get("base.seconds");
+    }
+
     @EventHandler
     public void onPlayerConnect(LoginEvent e)
     {

@@ -26,34 +26,34 @@ commands:
     description: "プレイヤーのBAN情報を取得します。"
 permissions:
   #Core
-  pgbm.member:
+  pybans.member:
     description: このプラグインのサーバメンバ用の権限セットです。レポートとかできます。
     default: true
     children:
-      pgbm.help: true
-      pgbm.notification: true
-  pgbm.mod:
+      pybans.help: true
+      pybans.notification: true
+  pybans.mod:
     description: この権限を有効にすると、プレイヤーは、プレイヤーから寄せられたレポートを見たり、NPCを送ったり、レポートを削除することができます。
     default: op
     children:
-      pgbm.ban: true
-      pgbm.tempban: true
-      pgbm.unban: true
-      pgbm.member: true
+      pybans.ban: true
+      pybans.tempban: true
+      pybans.unban: true
+      pybans.member: true
   #Member
-  pgbm.help:
-    description: この権限を持つプレイヤーは、PGBMのヘルプが表示されます。
+  pybans.help:
+    description: この権限を持つプレイヤーは、PyBansのヘルプが表示されます。
     default: true
-  pgbm.notification:
+  pybans.notification:
     description: プレイヤーがゲームから対処された際に、通知が表示されます。
     default: true
   #Moderator
-  pgbm.tempban:
+  pybans.tempban:
     description: 他プレイヤーを一時的にアクセス禁止にできます。
     default: op
-  pgbm.ban:
+  pybans.ban:
     description: 他プレイヤーをアクセス禁止にできます。
     default: op
-  pgbm.unban:
+  pybans.unban:
     description: 他プレイヤーのアクセス禁止を解除します。
     default: op
