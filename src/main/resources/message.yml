@@ -32,7 +32,7 @@ command:
         %%green%%期間指定方法は、8y 1mo 0d 9h 3m 1sで、8年1ヶ月9時間3分1秒間アクセス禁止にします。\n\
         "
     unban: "\
-        %%aqua%%/unban %%dark_aqua%%<PlayerName>\n\
+        %%aqua%%/unban %%dark_aqua%%<PlayerName> %%dark_purple%% [理由...]\n\
         %%green%%指定したプレイヤーのアクセス禁止を解除します。\n\
         "
     bans: "\
@@ -47,7 +47,7 @@ command:
   shelp:
     ban: "%%aqua%%/ban %%dark_aqua%%<PlayerName> %%dark_purple%% [理由...]"
     tempban: "%%aqua%%/tempban %%dark_aqua%%<期間> <PlayerName> %%dark_purple%% [理由...]"
-    unban: "%%aqua%%/unban %%dark_aqua%%<PlayerName>"
+    unban: "%%aqua%%/unban %%dark_aqua%%<PlayerName> %%dark_purple%% [理由...]"
     banhelp: "%%aqua%%/banhelp %%dark_purple%%[コマンド...]"
     bans: "%%aqua%%/bans %%dark_aqua%%<PlayerName> %%dark_purple%% [ページ]"
 
