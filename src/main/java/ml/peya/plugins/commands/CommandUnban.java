@@ -7,6 +7,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.ArrayList;
@@ -59,7 +60,7 @@ public class CommandUnban implements CommandExecutor
                     return;
                 }
 
-                PeyangGreatBanManager.getAPI().pardon(player, finalReason, "~CONSOLE");
+                PeyangGreatBanManager.getAPI().pardon(player, finalReason, sender instanceof ConsoleCommandSender ? "~CONSOLE": sender.getName());
 
                 sender.sendMessage(get("message.unban.playerUnBanned", pair("player", Bukkit.getOfflinePlayer(player).getName())));
             }
