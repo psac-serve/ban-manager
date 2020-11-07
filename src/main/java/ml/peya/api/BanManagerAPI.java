@@ -56,4 +56,11 @@ public interface BanManagerAPI
      * @param date     日時
      */
     void banWithEffect(boolean msgDelay, String bannedBy, Player player, String reason, boolean hasStaff, @Nullable Date date);
+
+    /**
+     * 正常にテストを通過したか取得します。
+     *
+     * @return テスト結果
+     */
+    boolean isTested();
 }

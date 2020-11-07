@@ -15,10 +15,12 @@ import java.nio.charset.StandardCharsets;
 public class Server
 {
     String addr;
+    String token;
 
-    public Server(String addr)
+    public Server(String addr, String token)
     {
         this.addr = addr;
+        this.token = token;
     }
 
     public boolean pingTest()

@@ -24,11 +24,25 @@ import static ml.peya.plugins.PeyangGreatBanManager.config;
 
 public class BAN implements BanManagerAPI
 {
+    Server server;
+    private final boolean pingTest;
+
+    @Override
+    public boolean isTested()
+    {
+        return pingTest;
+    }
+
+    public BAN(String addr, String token)
+    {
+        this.server = new Server(addr, token);
+        pingTest = server.pingTest();
+    }
 
     @Override
     public void ban(UUID player, String bannedBy, String reason, boolean hasStaff, @Nullable Date date)
     {
-        JsonNode node = PeyangGreatBanManager.server.quickAccess("/ban", "PUT", UrlBuilder.ban(player, bannedBy, reason, hasStaff, date));
+        JsonNode node = server.quickAccess("/ban", "PUT", UrlBuilder.ban(player, bannedBy, reason, hasStaff, date));
         if (!node.get("success").asBoolean())
             PeyangGreatBanManager.getPlugin().logger.warning("Failed to ban the player: " + node.get("cause").asText());
     }
@@ -39,11 +53,11 @@ public class BAN implements BanManagerAPI
 
         try
         {
-            PeyangGreatBanManager.server.quickAccess("/unban", "DELETE", "uuid=" + player + "&reason=" + URLEncoder.encode(reason, "UTF-8") + "&by=" + unBannedBy);
+            server.quickAccess("/unban", "DELETE", "uuid=" + player + "&reason=" + URLEncoder.encode(reason, "UTF-8") + "&by=" + unBannedBy);
         }
         catch (Exception e)
         {
-            PeyangGreatBanManager.server.quickAccess("/unban", "DELETE", "uuid=" + player + "&reason=UnBanned%20by%20an%20operator." + "&by=" + unBannedBy);
+            server.quickAccess("/unban", "DELETE", "uuid=" + player + "&reason=UnBanned%20by%20an%20operator." + "&by=" + unBannedBy);
         }
 
     }
@@ -64,7 +78,7 @@ public class BAN implements BanManagerAPI
     public BanSection getBanInfo(UUID uuid)
     {
 
-        JsonNode node = PeyangGreatBanManager.server.quickAccess("/getban", "GET", "uuid=" + uuid.toString());
+        JsonNode node = server.quickAccess("/getban", "GET", "uuid=" + uuid.toString());
 
         if (node == null || !node.get("success").asBoolean())
             return null;
@@ -80,7 +94,7 @@ public class BAN implements BanManagerAPI
     {
         ArrayList<BanSection> sec = new ArrayList<>();
 
-        JsonNode node = PeyangGreatBanManager.server.quickAccess("/bans", "GET", "uuid=" + player.toString());
+        JsonNode node = server.quickAccess("/bans", "GET", "uuid=" + player.toString());
         if (node == null || !node.get("success").asBoolean())
             return sec;
 
