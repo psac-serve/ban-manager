@@ -25,7 +25,6 @@ public class SectionBuilder implements BanSection
         this.isUb = isUnBanned;
     }
 
-
     @Override
     public String getID()
     {

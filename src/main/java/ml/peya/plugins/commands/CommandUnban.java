@@ -3,7 +3,6 @@ package ml.peya.plugins.commands;
 import ml.peya.plugins.PeyangGreatBanManager;
 import ml.peya.plugins.utils.ErrorMessageSender;
 import ml.peya.plugins.utils.PlayerUtils;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

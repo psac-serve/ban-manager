@@ -8,6 +8,10 @@ import java.util.regex.Pattern;
 public class TimeParser
 {
 
+    private static final String d = MessageEngine.get("base.day");
+    private static final String h = MessageEngine.get("base.hour");
+    private static final String m = MessageEngine.get("base.minutes");
+    private static final String s = MessageEngine.get("base.seconds");
     static String regex = "^[0-9]+((year|y)|(month|mo)|(day|d)|(hour|h)|(minute|min|m)|(second|sec|s))(s)?$";
 
     public static Date convert(String... args)
@@ -66,11 +70,6 @@ public class TimeParser
 
         return c.getTime();
     }
-
-    private static final String d = MessageEngine.get("base.day");
-    private static final String h = MessageEngine.get("base.hour");
-    private static final String m = MessageEngine.get("base.minutes");
-    private static final String s = MessageEngine.get("base.seconds");
 
     public static String convertFromDate(Date date)
     {

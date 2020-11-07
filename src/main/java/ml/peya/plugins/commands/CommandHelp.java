@@ -19,7 +19,7 @@ public class CommandHelp implements CommandExecutor
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
     {
         if (ErrorMessageSender.invalidLengthMessage(sender, args, 0, 1) ||
-            ErrorMessageSender.unPermMessage(sender, "pgbm.help"))
+                ErrorMessageSender.unPermMessage(sender, "pgbm.help"))
             return true;
 
         final boolean[] flag = {false};
@@ -42,7 +42,7 @@ public class CommandHelp implements CommandExecutor
                     sender.spigot().sendMessage(new ComponentBuilder(MessageEngine.get("command.shelp." + s))
                             .event(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(ChatColor.AQUA + "クリックして詳細を表示").create()))
                             .event(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/banhelp " + s))
-                        .create());
+                            .create());
                     flag[0] = true;
                 });
         if (flag[0])

@@ -10,11 +10,9 @@ import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.text.SimpleDateFormat;
@@ -24,11 +22,43 @@ import java.util.UUID;
 
 public class CommandBans implements CommandExecutor
 {
+    public static boolean iN(String g)
+    {
+        if (g.contains("."))
+            return false;
+        long num;
+        try
+        {
+            num = Long.parseLong(g);
+        }
+        catch (Exception ignored)
+        {
+            return false;
+        }
+        return num >= 0;
+    }
+
+    public static int n(String n)
+    {
+        try
+        {
+            long a = Long.parseLong(n);
+            int b = Integer.parseInt(n);
+            if (a != b || b < 0)
+                return 0;
+            return b;
+        }
+        catch (Exception ignored)
+        {
+            return 0;
+        }
+    }
+
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
     {
         if (ErrorMessageSender.unPermMessage(sender, "pbgm.bans") || ErrorMessageSender.invalidLengthMessage(sender, args, 1, 2))
-        return true;
+            return true;
 
         if (args.length == 2 && !args[1].equals("-a"))
         {
@@ -61,11 +91,14 @@ public class CommandBans implements CommandExecutor
                 int count = 0;
                 int start = 10 * (finalPage - 1);
 
-                sender.sendMessage(MessageEngine.get("message.bans.nm",
-                        new HashMap<String, Object>(){{
+                sender.sendMessage(MessageEngine.get(
+                        "message.bans.nm",
+                        new HashMap<String, Object>()
+                        {{
                             put("name", Bukkit.getOfflinePlayer(player).getName());
                             put("s", finalPage);
-                            put("mx", ((int)Math.ceil(sections.size() / 10.0)));}}
+                            put("mx", ((int) Math.ceil(sections.size() / 10.0)));
+                        }}
                 ));
 
                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
@@ -104,51 +137,22 @@ public class CommandBans implements CommandExecutor
 
                 ComponentBuilder builder = new ComponentBuilder(finalPage != 1 ? ChatColor.GOLD + "[<<]": "");
                 if (finalPage != 1)
-                    builder.event(new ClickEvent(ClickEvent.Action.RUN_COMMAND,
-                            "/bans " + args[0] + " " + (finalPage - 1)));
+                    builder.event(new ClickEvent(
+                            ClickEvent.Action.RUN_COMMAND,
+                            "/bans " + args[0] + " " + (finalPage - 1)
+                    ));
                 builder.reset();
                 builder.append(ChatColor.GOLD + "-----");
                 if (count < sections.size())
                     builder.append("[>>]")
-                            .event(new ClickEvent(ClickEvent.Action.RUN_COMMAND,
-                            "/bans" + args[0] + " " + (finalPage + 1)));
+                            .event(new ClickEvent(
+                                    ClickEvent.Action.RUN_COMMAND,
+                                    "/bans" + args[0] + " " + (finalPage + 1)
+                            ));
                 sender.spigot().sendMessage(builder.create());
             }
         }.runTaskAsynchronously(PeyangGreatBanManager.getPlugin());
 
         return true;
-    }
-
-
-    public static boolean iN(String g)
-    {
-        if (g.contains("."))
-            return false;
-        long num;
-        try
-        {
-            num = Long.parseLong(g);
-        }
-        catch(Exception ignored)
-        {
-            return false;
-        }
-        return num >= 0;
-    }
-
-    public static int n(String n)
-    {
-        try
-        {
-            long a = Long.parseLong(n);
-            int b = Integer.parseInt(n);
-            if (a != b || b < 0)
-                return 0;
-            return b;
-        }
-        catch(Exception ignored)
-        {
-            return 0;
-        }
     }
 }

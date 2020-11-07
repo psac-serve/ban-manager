@@ -8,7 +8,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.ArrayList;
@@ -16,6 +15,7 @@ import java.util.Arrays;
 import java.util.UUID;
 
 import static ml.peya.plugins.utils.MessageEngine.get;
+import static ml.peya.plugins.utils.MessageEngine.pair;
 
 public class CommandBan implements CommandExecutor
 {
@@ -56,17 +56,17 @@ public class CommandBan implements CommandExecutor
 
                 if (PeyangGreatBanManager.getAPI().getBanInfo(player) != null)
                 {
-                    sender.sendMessage(get("error.error.alreadyBanned"));
+                    sender.sendMessage(get("error.alreadyBanned"));
                     return;
                 }
 
 
                 if (Bukkit.getOfflinePlayer(player).isOnline())
-                    PeyangGreatBanManager.getAPI().banWithEffect(false, Bukkit.getPlayer(player), finalReason, false,null);
+                    PeyangGreatBanManager.getAPI().banWithEffect(false, Bukkit.getPlayer(player), finalReason, false, null);
                 else
-                    PeyangGreatBanManager.getAPI().ban(player, finalReason, false,null);
+                    PeyangGreatBanManager.getAPI().ban(player, finalReason, false, null);
 
-                sender.sendMessage(get(""));
+                sender.sendMessage(get("message.ban.playerBanned", pair("player", Bukkit.getOfflinePlayer(player).getName())));
 
             }
         }.runTaskAsynchronously(PeyangGreatBanManager.getPlugin());

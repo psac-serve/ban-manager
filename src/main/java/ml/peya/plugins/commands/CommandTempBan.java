@@ -8,16 +8,15 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.security.KeyFactory;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.UUID;
 import java.util.regex.Pattern;
 
-import static ml.peya.plugins.utils.MessageEngine.*;
+import static ml.peya.plugins.utils.MessageEngine.get;
+import static ml.peya.plugins.utils.MessageEngine.pair;
 
 public class CommandTempBan implements CommandExecutor
 {
@@ -37,7 +36,6 @@ public class CommandTempBan implements CommandExecutor
             @Override
             public void run()
             {
-
 
 
                 ArrayList<String> argList = new ArrayList<>(Arrays.asList(args));
@@ -76,7 +74,7 @@ public class CommandTempBan implements CommandExecutor
 
                 if (PeyangGreatBanManager.getAPI().getBanInfo(pl) != null)
                 {
-                    sender.sendMessage(get("error.error.alreadyBanned"));
+                    sender.sendMessage(get("error.alreadyBanned"));
                     return;
                 }
 
@@ -84,7 +82,9 @@ public class CommandTempBan implements CommandExecutor
                 if (Bukkit.getOfflinePlayer(pl).isOnline())
                     PeyangGreatBanManager.getAPI().banWithEffect(false, Bukkit.getPlayer(pl), reason.toString(), false, TimeParser.convert(argList.toArray(new String[0])));
                 else
-                    PeyangGreatBanManager.getAPI().ban(pl, reason.toString(), false,null);
+                    PeyangGreatBanManager.getAPI().ban(pl, reason.toString(), false, TimeParser.convert(argList.toArray(new String[0])));
+
+                sender.sendMessage(get("message.ban.playerBanned", pair("player", Bukkit.getOfflinePlayer(pl).getName())));
 
             }
         }.runTaskAsynchronously(PeyangGreatBanManager.getPlugin());

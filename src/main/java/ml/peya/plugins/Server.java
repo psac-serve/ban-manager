@@ -49,7 +49,6 @@ public class Server
         return success;
     }
 
-
     public JsonNode quickAccess(String func, String method, String body)
     {
         HttpURLConnection connection = null;
@@ -106,7 +105,6 @@ public class Server
         return null;
     }
 
-
     private String streamToString(InputStream stream)
     {
         try
@@ -120,7 +118,7 @@ public class Server
             stream.close();
             return sb.toString();
         }
-        catch(Exception e)
+        catch (Exception e)
         {
             return "{\"success\":false,\"cause\":\"Failed to parsing result.\"}";
         }

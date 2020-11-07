@@ -9,6 +9,7 @@ public interface BanSection
      */
 
     String getID();
+
     /**
      * BAN理由
      */
@@ -28,10 +29,12 @@ public interface BanSection
      * BAN解除日時
      */
     Date unbanned();
+
     /**
      * StaffによるBANかどうか
      */
     boolean hasStaff();
+
     /**
      * BAN解除されたかどうか
      */

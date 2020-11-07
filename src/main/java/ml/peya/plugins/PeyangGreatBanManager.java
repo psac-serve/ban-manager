@@ -15,12 +15,28 @@ import java.util.logging.Logger;
 public class PeyangGreatBanManager extends JavaPlugin
 {//いろいろめんどいのでJavaDoc見送り
 
-    public Logger logger = getLogger();
-    private static BanManagerAPI ban;
     public static FileConfiguration config;
     public static Server server = null;
     public static boolean isAgent = false;
+    private static BanManagerAPI ban;
     private static PeyangGreatBanManager plugin;
+    public Logger logger = getLogger();
+
+    /**
+     * API取得
+     *
+     * @return API
+     */
+    public static BanManagerAPI getAPI()
+    {
+        return ban;
+    }
+
+    public static PeyangGreatBanManager getPlugin()
+    {
+        return plugin;
+    }
+
     @Override
     public void onEnable()
     {
@@ -54,19 +70,5 @@ public class PeyangGreatBanManager extends JavaPlugin
 
 
         logger.info("PeyangGreatBanManager has activated!");
-    }
-
-    /**
-     * API取得
-     * @return API
-     */
-    public static BanManagerAPI getAPI()
-    {
-        return ban;
-    }
-
-    public static PeyangGreatBanManager getPlugin()
-    {
-        return plugin;
     }
 }

@@ -53,8 +53,10 @@ command:
 message:
   bans:
     nm: "%%gold%%--- Bans for %%name%% (Page %%s%% of %%mx%%) ---"
+  ban:
+    playerBanned: "%%red%%%%player%% さんのアクセスを禁止しました。"
   unban:
-    playerUnBanned: "%%player%% %%green%%さんのアクセス禁止を解除しました。"
+    playerUnBanned: "%%green%%%%player%% さんのアクセス禁止を解除しました。"
 
 
 kick:

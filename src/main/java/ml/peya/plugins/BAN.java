@@ -115,7 +115,7 @@ public class BAN implements BanManagerAPI
 
         if (!msgDelay)
         {
-            for (Player s: Bukkit.getOnlinePlayers())
+            for (Player s : Bukkit.getOnlinePlayers())
             {
                 if (s.hasPermission("pgbm.notification"))
                     MessageEngine.get("kick.broadcast");
