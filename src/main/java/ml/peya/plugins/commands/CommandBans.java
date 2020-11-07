@@ -18,7 +18,9 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 import java.util.UUID;
+import java.util.stream.IntStream;
 
 public class CommandBans implements CommandExecutor
 {
@@ -90,7 +92,7 @@ public class CommandBans implements CommandExecutor
                 int count = 0;
                 int start = 10 * (finalPage - 1);
 
-                sender.sendMessage(MessageEngine.get(
+                String x = MessageEngine.get(
                         "message.bans.nm",
                         new HashMap<String, Object>()
                         {{
@@ -98,7 +100,9 @@ public class CommandBans implements CommandExecutor
                             put("s", finalPage);
                             put("mx", ((int) Math.ceil(sections.size() / 10.0)));
                         }}
-                ));
+                );
+
+                sender.sendMessage(x); //prefix
 
                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
@@ -143,14 +147,20 @@ public class CommandBans implements CommandExecutor
                             ClickEvent.Action.RUN_COMMAND,
                             "/bans " + args[0] + " " + (finalPage - 1)
                     ));
+                else
+                    builder.append(ChatColor.GOLD + "----");
                 builder = new ComponentBuilder(builder);
-                builder.append(ChatColor.GOLD + "------------");
+                StringBuilder a = new StringBuilder();
+                IntStream.range(0, Objects.requireNonNull(x).length() - 8).forEach((s) -> a.append("-"));
+                builder.append(ChatColor.GOLD + a.toString());
                 if (count < sections.size())
                     builder.append(ChatColor.GOLD + "[>>]")
                             .event(new ClickEvent(
                                     ClickEvent.Action.RUN_COMMAND,
                                     "/bans " + args[0] + " " + (finalPage + 1)
                             ));
+                else
+                    builder.append(ChatColor.GOLD + "----");
                 sender.spigot().sendMessage(builder.create());
             }
         }.runTaskAsynchronously(PeyangGreatBanManager.getPlugin());
