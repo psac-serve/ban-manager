@@ -14,6 +14,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import javax.annotation.Nullable;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -25,17 +26,26 @@ public class BAN implements BanManagerAPI
 {
 
     @Override
-    public void ban(UUID player, String reason, boolean hasStaff, @Nullable Date date)
+    public void ban(UUID player, String bannedBy, String reason, boolean hasStaff, @Nullable Date date)
     {
-        JsonNode node = PeyangGreatBanManager.server.quickAccess("/ban", "PUT", UrlBuilder.ban(player, reason, hasStaff, date));
+        JsonNode node = PeyangGreatBanManager.server.quickAccess("/ban", "PUT", UrlBuilder.ban(player, bannedBy, reason, hasStaff, date));
         if (!node.get("success").asBoolean())
             PeyangGreatBanManager.getPlugin().logger.warning("Failed to ban the player: " + node.get("cause").asText());
     }
 
     @Override
-    public void pardon(UUID player)
+    public void pardon(UUID player, String reason, String unBannedBy)
     {
-        PeyangGreatBanManager.server.quickAccess("/unban", "DELETE", "uuid=" + player);
+
+        try
+        {
+            PeyangGreatBanManager.server.quickAccess("/unban", "DELETE", "uuid=" + player + "&reason=" + URLEncoder.encode(reason, "UTF-8") + "&by=" + unBannedBy);
+        }
+        catch (Exception e)
+        {
+            PeyangGreatBanManager.server.quickAccess("/unban", "DELETE", "uuid=" + player + "&reason=UnBanned%20by%20an%20operator." + "&by=" + unBannedBy);
+        }
+
     }
 
     private Long numParse(String num)
@@ -96,12 +106,15 @@ public class BAN implements BanManagerAPI
                 ex == null ? null: new Date(ex),
                 un == null ? null: new Date(un),
                 node.get("hasStaff").asBoolean(),
-                node.get("unBanned").asBoolean()
+                node.get("unBanned").asBoolean(),
+                node.get("bannedBy") == null ? null: node.get("bannedBy").asText(),
+                node.get("unBannedBy") == null ? null: node.get("unBannedBy").asText(),
+                node.get("unBanReason") == null ? null: node.get("unBanReason").asText()
         );
     }
 
     @Override
-    public void banWithEffect(boolean msgDelay, Player player, String reason, boolean hasStaff, @Nullable Date date)
+    public void banWithEffect(boolean msgDelay, String bannedby, Player player, String reason, boolean hasStaff, @Nullable Date date)
     {
         HashMap<String, Object> map = new HashMap<>();
 
@@ -145,7 +158,7 @@ public class BAN implements BanManagerAPI
                 if (config.getBoolean("decoration.lightning"))
                     Decorations.lighting(player);
 
-                ban(player.getUniqueId(), reason, hasStaff, date);
+                ban(player.getUniqueId(), bannedby, reason, hasStaff, date);
 
                 if (player.isOnline())
                     player.kickPlayer(finalMessage);

@@ -8,6 +8,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.ArrayList;
@@ -80,10 +81,22 @@ public class CommandTempBan implements CommandExecutor
 
 
                 if (Bukkit.getOfflinePlayer(pl).isOnline())
-                    PeyangGreatBanManager.getAPI().banWithEffect(false, Bukkit.getPlayer(pl), reason.toString(), false, TimeParser.convert(argList.toArray(new String[0])));
+                    PeyangGreatBanManager.getAPI().banWithEffect(
+                            true,
+                            sender instanceof ConsoleCommandSender ? "~CONSOLE": sender.getName(),
+                            Bukkit.getPlayer(pl),
+                            reason.toString(),
+                            false,
+                            TimeParser.convert(argList.toArray(new String[0]))
+                    );
                 else
-                    PeyangGreatBanManager.getAPI().ban(pl, reason.toString(), false, TimeParser.convert(argList.toArray(new String[0])));
-
+                    PeyangGreatBanManager.getAPI().ban(
+                            pl,
+                            sender instanceof ConsoleCommandSender ? "~CONSOLE": sender.getName(),
+                            reason.toString(),
+                            false,
+                            TimeParser.convert(argList.toArray(new String[0]))
+                    );
                 sender.sendMessage(get("message.ban.playerBanned", pair("player", Bukkit.getOfflinePlayer(pl).getName())));
 
             }

@@ -15,16 +15,17 @@ public interface BanManagerAPI
      * @param player   プレイヤー
      * @param reason   理由
      * @param hasStaff STAFFによるBANかどうか
+     * @param bannedBy BAN者の名前
      * @param date     日時
      */
-    void ban(UUID player, String reason, boolean hasStaff, @Nullable Date date);
+    void ban(UUID player, String bannedBy, String reason, boolean hasStaff, @Nullable Date date);
 
     /**
      * プレイヤーのBANを解除します。
      *
      * @param player プレイヤー
      */
-    void pardon(UUID player);
+    void pardon(UUID player, String reason, String unBannedBy);
 
     /**
      * BANの詳細を取得します。
@@ -48,9 +49,11 @@ public interface BanManagerAPI
      * プレイヤーをBANします。
      *
      * @param msgDelay メッセージを送信するまでの遅延
+     * @param bannedBy BAN者の名前
+     * @param hasStaff STAFFかどうか*
      * @param player   プレイヤー
      * @param reason   理由
      * @param date     日時
      */
-    void banWithEffect(boolean msgDelay, Player player, String reason, boolean hasStaff, @Nullable Date date);
+    void banWithEffect(boolean msgDelay, String bannedBy, Player player, String reason, boolean hasStaff, @Nullable Date date);
 }

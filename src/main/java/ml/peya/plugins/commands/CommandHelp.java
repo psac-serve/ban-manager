@@ -37,7 +37,7 @@ public class CommandHelp implements CommandExecutor
         ArrayList<String> nodes = new ArrayList<>(Arrays.asList("ban", "tempban", "unban", "banhelp", "bans"));
 
         nodes.parallelStream()
-                .filter((s) -> !sender.hasPermission(s))
+                .filter((s) -> sender.hasPermission("pgbm." + s))
                 .forEach((s) -> {
                     sender.spigot().sendMessage(new ComponentBuilder(MessageEngine.get("command.shelp." + s))
                             .event(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(ChatColor.AQUA + "クリックして詳細を表示").create()))
@@ -45,8 +45,8 @@ public class CommandHelp implements CommandExecutor
                             .create());
                     flag[0] = true;
                 });
-        if (flag[0])
-            sender.sendMessage(MessageEngine.get("error.pgbm.help"));
+        if (!flag[0])
+            sender.sendMessage(MessageEngine.get("error.pgbm.notPage"));
         return true;
     }
 }

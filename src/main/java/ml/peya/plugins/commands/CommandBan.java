@@ -8,6 +8,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.ArrayList;
@@ -39,7 +40,7 @@ public class CommandBan implements CommandExecutor
 
         String reason = "Banned by Operator.";
 
-        if (args.length > 2)
+        if (args.length >= 2)
         {
             ArrayList<String> reasons = new ArrayList<>(Arrays.asList(args));
             reasons.remove(0);
@@ -62,9 +63,22 @@ public class CommandBan implements CommandExecutor
 
 
                 if (Bukkit.getOfflinePlayer(player).isOnline())
-                    PeyangGreatBanManager.getAPI().banWithEffect(false, Bukkit.getPlayer(player), finalReason, false, null);
+                    PeyangGreatBanManager.getAPI().banWithEffect(
+                            true,
+                            sender instanceof ConsoleCommandSender ? "~CONSOLE": sender.getName(),
+                            Bukkit.getPlayer(player),
+                            finalReason,
+                            false,
+                            null
+                    );
                 else
-                    PeyangGreatBanManager.getAPI().ban(player, finalReason, false, null);
+                    PeyangGreatBanManager.getAPI().ban(
+                            player,
+                            sender instanceof ConsoleCommandSender ? "~CONSOLE": sender.getName(),
+                            finalReason,
+                            false,
+                            null
+                    );
 
                 sender.sendMessage(get("message.ban.playerBanned", pair("player", Bukkit.getOfflinePlayer(player).getName())));
 

@@ -17,11 +17,9 @@ public class PlayerUtils
         {
 
             for (OfflinePlayer offlinePlayer : Bukkit.getOfflinePlayers())
-            {
                 if (offlinePlayer.getName().toLowerCase().equals(playerName.toLowerCase()))
                     if (offlinePlayer.hasPlayedBefore())
                         return ((CraftOfflinePlayer) offlinePlayer).getProfile().getId();
-            }
             return null;
         }
         else

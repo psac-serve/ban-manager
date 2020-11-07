@@ -60,11 +60,6 @@ public class CommandBans implements CommandExecutor
         if (ErrorMessageSender.unPermMessage(sender, "pbgm.bans") || ErrorMessageSender.invalidLengthMessage(sender, args, 1, 2))
             return true;
 
-        if (args.length == 2 && !args[0].equals("-a"))
-        {
-            sender.sendMessage(MessageEngine.get("error.invalidArgument"));
-            return true;
-        }
 
         int page = 1;
         if (args.length == 2 && iN(args[1]))
@@ -122,20 +117,23 @@ public class CommandBans implements CommandExecutor
 
                     String type = ChatColor.YELLOW + (section.expire() == null ? "PermaBan - ": "TempBan - ");
                     String banned = format.format(section.banned()) + " ";
-                    String reason = ChatColor.WHITE + ChatColor.ITALIC.toString() + section.getReason();
+                    String reason = ChatColor.WHITE + ChatColor.ITALIC.toString() + section.getReason() + " ";
                     String forS = section.expire() == null ? "": ChatColor.RESET + ChatColor.YELLOW.toString() + " for " +
                             TimeParser.convertFromDate(section.banned(), section.expire());
                     String unb = !section.isUnbanned() ? "":
                             ChatColor.RESET + ChatColor.YELLOW.toString() + " unbanned " + format.format(section.unbanned());
-
+                    String unbr = !section.isUnbanned() ? "": ChatColor.ITALIC.toString() + ChatColor.WHITE + " " + section.unBanReason() + " ";
 
                     sender.sendMessage(
                             ChatColor.GOLD.toString() + (i + 1) + ". " +
                                     type +
                                     banned +
                                     reason +
+                                    by(section.bannedBy()) +
                                     forS +
-                                    unb
+                                    unb +
+                                    unbr +
+                                    (section.isUnbanned() ? by(section.unBannedBy()): "")
                     );
                 }
 
@@ -145,18 +143,23 @@ public class CommandBans implements CommandExecutor
                             ClickEvent.Action.RUN_COMMAND,
                             "/bans " + args[0] + " " + (finalPage - 1)
                     ));
-                builder.reset();
-                builder.append(ChatColor.GOLD + "-----");
+                builder = new ComponentBuilder(builder);
+                builder.append(ChatColor.GOLD + "------------");
                 if (count < sections.size())
-                    builder.append("[>>]")
+                    builder.append(ChatColor.GOLD + "[>>]")
                             .event(new ClickEvent(
                                     ClickEvent.Action.RUN_COMMAND,
-                                    "/bans" + args[0] + " " + (finalPage + 1)
+                                    "/bans " + args[0] + " " + (finalPage + 1)
                             ));
                 sender.spigot().sendMessage(builder.create());
             }
         }.runTaskAsynchronously(PeyangGreatBanManager.getPlugin());
 
         return true;
+    }
+
+    private static String by(String name)
+    {
+        return ChatColor.RESET + ChatColor.YELLOW.toString() + "by " + name;
     }
 }

@@ -68,6 +68,7 @@ public class TimeParser
             }
         }
 
+        c.add(Calendar.SECOND, 1);
         return c.getTime();
     }
 

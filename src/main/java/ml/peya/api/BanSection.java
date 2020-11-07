@@ -39,4 +39,19 @@ public interface BanSection
      * BAN解除されたかどうか
      */
     boolean isUnbanned();
+
+    /**
+     * BAN者
+     */
+    String bannedBy();
+
+    /**
+     * UNBAN者
+     */
+    String unBannedBy();
+
+    /**
+     * UNBAN理由
+     */
+    String unBanReason();
 }

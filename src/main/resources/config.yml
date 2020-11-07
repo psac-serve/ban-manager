@@ -15,7 +15,8 @@ decoration:
   lightning: true
   #まほーじん～～！！
   circle: true
-
+  #れーざー！！！
+  laser: true
 #きっく！
 kick:
   #キックまでのメッセージが流れてからのラグ(秒

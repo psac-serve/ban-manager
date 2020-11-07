@@ -13,8 +13,11 @@ public class SectionBuilder implements BanSection
     private final Date ub;
     private final boolean st;
     private final boolean isUb;
+    private final String bd;
+    private final String ud;
+    private final String ubr;
 
-    public SectionBuilder(String id, String reason, Date banned, Date expire, Date unbanned, boolean staff, boolean isUnBanned)
+    public SectionBuilder(String id, String reason, Date banned, Date expire, Date unbanned, boolean staff, boolean isUnBanned, String bannedBy, String unBannedBy, String unBanReason)
     {
         this.id = id;
         this.re = reason;
@@ -23,6 +26,9 @@ public class SectionBuilder implements BanSection
         this.st = staff;
         this.ub = unbanned;
         this.isUb = isUnBanned;
+        this.ud = unBannedBy;
+        this.bd = bannedBy;
+        this.ubr = unBanReason;
     }
 
     @Override
@@ -65,5 +71,23 @@ public class SectionBuilder implements BanSection
     public boolean isUnbanned()
     {
         return isUb;
+    }
+
+    @Override
+    public String unBannedBy()
+    {
+        return ud;
+    }
+
+    @Override
+    public String bannedBy()
+    {
+        return bd;
+    }
+
+    @Override
+    public String unBanReason()
+    {
+        return ubr;
     }
 }

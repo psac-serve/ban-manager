@@ -48,20 +48,15 @@ public class Events implements Listener
                     @Override
                     public void run()
                     {
-                        PeyangGreatBanManager.getAPI().pardon(e.getUniqueId());
+                        PeyangGreatBanManager.getAPI().pardon(e.getUniqueId(), "Tempban expired", "~BanBot");
                     }
                 }.runTaskAsynchronously(PeyangGreatBanManager.getPlugin());
                 return;
             }
-            e.setKickMessage(MessageEngine.get(type, pair));
-            return;
         }
         else
-        {
             type = "ban.permReason";
-
-            e.setKickMessage(MessageEngine.get(type, pair));
-        }
+        e.setKickMessage(MessageEngine.get(type, pair));
         e.setLoginResult(AsyncPlayerPreLoginEvent.Result.KICK_BANNED);
     }
 
