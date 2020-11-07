@@ -1,0 +1,5 @@
+name: PeyangBanManager
+main: ml.peya.plugins.Bungee.PeyangBanManager
+version: 1.0.0
+prefix: PeyangBanManager
+author: Peyang

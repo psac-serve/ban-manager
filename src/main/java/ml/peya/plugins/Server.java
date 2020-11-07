@@ -63,8 +63,8 @@ public class Server
             connection.setConnectTimeout(200);
             connection.setRequestMethod(method);
             connection.addRequestProperty("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-            if (!PeyangGreatBanManager.config.getString("server.token").equals(""))
-                connection.addRequestProperty("Token", PeyangGreatBanManager.config.getString("server.token"));
+            if (!token.equals(""))
+                connection.addRequestProperty("Token", token);
             connection.setDoOutput(true);
             connection.setDoInput(true);
             connection.connect();

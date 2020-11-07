@@ -40,10 +40,11 @@ public class PeyangGreatBanManager extends JavaPlugin
     public void onEnable()
     {
         plugin = this;
-        ban = new BAN(config.getString("server.addr"), config.getString("server.token"));
 
         saveDefaultConfig();
         config = getConfig();
+        
+        ban = new BAN(config.getString("server.addr"), config.getString("server.token"));
 
         isBungee = config.getBoolean("bungeecord");
 

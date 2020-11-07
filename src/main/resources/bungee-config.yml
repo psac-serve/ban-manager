@@ -1,0 +1,7 @@
+#専用サーバー
+#Download >>> https://github.com/psac-serve/ban-server/ <<<
+server:
+  #アドレス:ポート番号
+  addr: "localhost:810"
+  #認証用トークン
+  token: ""
