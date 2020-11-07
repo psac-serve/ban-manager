@@ -1,0 +1,93 @@
+base:
+  prefix: "%%aqua%%-----%%green%%[%%blue%%PeyangSuperbAntiCheat%%green%%]%%aqua%%-----"
+  day: "日"
+  hour: "時間"
+  minutes: "分"
+  seconds: "秒"
+
+error:
+  minArgs: "%%red%%エラー：引数が不足しています。/%%label%% help でヘルプを見てください。"
+  playerNotFound: "%%red%%エラー：対象プレイヤーが見つかりませんでした。"
+  unknownSQLError: "%%red%%エラー：不明なSQLエラーが発生しました。運営に報告しています。"
+  notHavePermission: "%%red%%エラー：権限がありません！"
+  invalidArgument: "%%red%%エラー：引数の数が不正です。/pgbm help でヘルプを見てください。"
+  processing: "%%red%%エラー：現在処理中です。"
+  alreadyBanned: "%%red%%エラー：対象プレイヤーは既にアクセスを禁止されています。"
+  pgbm:
+    notPage: "%%red%%エラー：表示できるものが何もありません！"
+  bans:
+    unknownSearchType: "%%red%%エラー：検索タイプが不明です。"
+    databaseInfoNotFound: "%%red%%エラー：データベースに情報が見つかりませんでした。"
+
+command:
+  help:
+    ban: "\
+        %%aqua%%/ban %%dark_aqua%%<PlayerName> %%dark_purple%% [理由...]\n\
+        %%green%%指定したプレイヤーを永久的にアクセスを禁止します。\n\
+        "
+    tempban: "\
+        %%aqua%%/tempban %%dark_aqua%%<期間> <PlayerName> %%dark_purple%% [理由...]\n\
+        %%green%%指定したプレイヤーを一時的にアクセス禁止にします。\n\
+        %%green%%期間指定方法は、8y 1mo 0d 9h 3m 1sで、8年1ヶ月9時間3分1秒間アクセス禁止にします。\n\
+        "
+    unban: "\
+        %%aqua%%/unban %%dark_aqua%%<PlayerName>\n\
+        %%green%%指定したプレイヤーのアクセス禁止を解除します。\n\
+        "
+    bans: "\
+        %%aqua%%/bans %%dark_aqua%%<PlayerName> %%dark_purple%% [ページ]\n\
+        %%green%%指定したプレイヤーのBAN履歴を表示します。\n\
+        "
+    banhelp: "\
+        %%aqua%%/banhelp %%dark_purple%%[コマンド...]\n\
+        %%green%% ヘルプを表示します。
+        "
+
+  shelp:
+    ban: "%%aqua%%/ban %%dark_aqua%%<PlayerName> %%dark_purple%% [理由...]"
+    tempban: "%%aqua%%/tempban %%dark_aqua%%<期間> <PlayerName> %%dark_purple%% [理由...]"
+    unban: "%%aqua%%/unban %%dark_aqua%%<PlayerName>"
+    banhelp: "%%aqua%%/banhelp %%dark_purple%%[コマンド...]"
+    bans: "%%aqua%%/bans %%dark_aqua%%<PlayerName> %%dark_purple%% [ページ]"
+
+message:
+  bans:
+    nm: "%%gold%%--- Bans for %%name%% (Page %%s%% of %%mx%%) ---"
+  unban:
+    playerUnBanned: "%%player%% %%green%%さんのアクセス禁止を解除しました。"
+
+
+kick:
+  broadcast: "\
+    %%red%%%%bold%%違反行為をしたプレイヤーをゲームから対処しました。\n\
+    %%reset%%%%aqua%%ご報告ありがとうございました！\
+    "
+
+  broadcastAdmin: "\
+    %%aqua%%プレイヤー%%white%%：%%blue%%%%name%%\n\
+    %%aqua%%UUID%%white%%：%%blue%%%%uuid%%\
+    "
+
+  reason: "\
+    %%red%%ゲームから退出させられました！\n\
+    \n\
+    %%gray%%理由：%%white%%%%reason%% %%gray%%%%italic%%[GG-%%ggid%%]%%reset%%\n\
+    \n\
+    %%gray%%Kick ID：%%white%%%%id%%\
+    "
+ban:
+  permReason: "\
+    %%red%%このサーバーへのアクセスは永久に禁止されています！\n\
+    \n\
+    %%gray%%理由：%%white%%%%reason%% %%gray%%%%italic%%[GG-%%ggid%%]%%reset%%\n\
+    \n\
+    %%gray%%アクセス禁止 ID：%%white%%%%id%%\
+    "
+
+  tempReason: "\
+  %%white%%%%date%% %%red%%の間このサーバーから一時的にアクセスを禁止されています！\n\
+  \n\
+  %%gray%%理由：%%white%%%%reason%% %%gray%%%%italic%%[GG-%%ggid%%]%%reset%%\n\
+  \n\
+  %%gray%%アクセス禁止 ID：%%white%%%%id%%\
+  "

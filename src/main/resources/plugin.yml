@@ -1,0 +1,59 @@
+name: PeyangGreatBanManager
+main: ml.peya.plugins.PeyangGreatBanManager
+version: 0.1a
+prefix: PeyangGreatBanManager
+load: POSTWORLD
+author: Peyang
+api-version: 1.12.2
+
+commands:
+  banhelp:
+    usage: /banhelp [CommandName]
+    description: "ヘルプを表示します。"
+  ban:
+    aliases: ["acban", "permban"]
+    usage: /ban <Player> [Reason]
+    description: "理由をつけてプレイヤーをアクセス禁止にします。"
+  unban:
+    aliases: ["pardon"]
+    usage: /unban <Player>
+    description: "プレイヤーのBANを解除します。"
+  tempban:
+    usage: /tempban <Expire> <Player> [Reason]
+    description: "一定の期間の間、プレイヤーをアクセス禁止にします。"
+  bans:
+    usage: /bans <PlayerName> [page]
+    description: "プレイヤーのBAN情報を取得します。"
+permissions:
+  #Core
+  pgbm.member:
+    description: このプラグインのサーバメンバ用の権限セットです。レポートとかできます。
+    default: true
+    children:
+      pgbm.help: true
+      pgbm.notification: true
+  pgbm.mod:
+    description: この権限を有効にすると、プレイヤーは、プレイヤーから寄せられたレポートを見たり、NPCを送ったり、レポートを削除することができます。
+    default: op
+    children:
+      pgbm.ban: true
+      pgbm.tempban: true
+      pgbm.unban: true
+      pgbm.member: true
+  #Member
+  pgbm.help:
+    description: この権限を持つプレイヤーは、PGBMのヘルプが表示されます。
+    default: true
+  pgbm.notification:
+    description: プレイヤーがゲームから対処された際に、通知が表示されます。
+    default: true
+  #Moderator
+  pgbm.tempban:
+    description: 他プレイヤーを一時的にアクセス禁止にできます。
+    default: op
+  pgbm.ban:
+    description: 他プレイヤーをアクセス禁止にできます。
+    default: op
+  pgbm.unban:
+    description: 他プレイヤーのアクセス禁止を解除します。
+    default: op
