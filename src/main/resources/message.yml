@@ -63,7 +63,7 @@ message:
 kick:
   broadcast: "\
     %%red%%%%bold%%違反行為をしたプレイヤーをゲームから対処しました。\n\
-    %%reset%%%%aqua%%ご報告ありがとうございました！\
+    %%reset6%%%%aqua%%ご報告ありがとうございました！\
     "
 
   broadcastAdmin: "\

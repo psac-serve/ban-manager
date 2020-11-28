@@ -20,8 +20,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.UUID;
 
-import static ml.peya.plugins.PeyangGreatBanManager.config;
-
 public class BAN implements BanManagerAPI
 {
     Server server;
@@ -138,8 +136,6 @@ public class BAN implements BanManagerAPI
         map.put("ggid", PlayerUtils.getGGID(id.hashCode()));
         map.put("id", id);
 
-        Decorations.decoration(player);
-
         if (!msgDelay)
         {
             for (Player s : Bukkit.getOnlinePlayers())
@@ -171,8 +167,6 @@ public class BAN implements BanManagerAPI
             {
                 if (msgDelay)
                     Bukkit.broadcast(MessageEngine.get("kick.broadcast"), "pybans.notification");
-                if (config.getBoolean("decoration.lightning"))
-                    Decorations.lighting(player);
 
                 if (player.isOnline())
                     player.kickPlayer(finalMessage);
