@@ -122,3 +122,9 @@ Tokenは、１度このサーバーを起動したあと、PeyangBanServer/token
 #### デフォルト：*pybans.mod*
 #### 権限概要
 /bans コマンドの使用権限です。
+
+##謝辞
+このプラグインは、以下のAPI/ライブラリを使用しております。
++ [P2P-Develop/PeyangSuperLibrary](https://github.com/P2P-Develop/PeyangSuperLibrary)
++ [FasterXML/jackson](https://github.com/FasterXML/jackson)
++ [Apache CommonsLang3](https://commons.apache.org/proper/commons-lang/)
