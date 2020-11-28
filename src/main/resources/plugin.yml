@@ -30,15 +30,16 @@ permissions:
     description: このプラグインのサーバメンバ用の権限セットです。レポートとかできます。
     default: true
     children:
-      pybans.help: true
       pybans.notification: true
   pybans.mod:
     description: この権限を有効にすると、プレイヤーは、プレイヤーから寄せられたレポートを見たり、NPCを送ったり、レポートを削除することができます。
     default: op
     children:
+      pybans.help: true
       pybans.ban: true
       pybans.tempban: true
       pybans.unban: true
+      pybans.bans: true
       pybans.member: true
   #Member
   pybans.help:
@@ -48,6 +49,9 @@ permissions:
     description: プレイヤーがゲームから対処された際に、通知が表示されます。
     default: true
   #Moderator
+  pybans.bans:
+    description: プレイヤーのアクセス禁止履歴を表示できます。
+    default: op
   pybans.tempban:
     description: 他プレイヤーを一時的にアクセス禁止にできます。
     default: op

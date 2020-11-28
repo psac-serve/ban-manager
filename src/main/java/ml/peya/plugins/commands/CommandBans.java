@@ -59,7 +59,7 @@ public class CommandBans implements CommandExecutor
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
     {
-        if (ErrorMessageSender.unPermMessage(sender, "pbgm.bans") || ErrorMessageSender.invalidLengthMessage(sender, args, 1, 2))
+        if (ErrorMessageSender.unPermMessage(sender, "pybans.bans") || ErrorMessageSender.invalidLengthMessage(sender, args, 1, 2))
             return true;
 
 
