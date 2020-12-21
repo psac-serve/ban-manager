@@ -8,7 +8,7 @@
 当プラグインはこのMODのサポートをしていますが、LynxModを使用しHypixelServerにアクセスした場合、HypixelServerから永久的にアクセスを禁止される可能性がございます。  
 また、LynxModを使用してHypixelServerから永久的にアクセスを禁止された場合、当プラグイン[作者](https://github.com/peyang-Celeron/)は一切の責任を負いません。
 ## インストール方法
-+ [こちら](https://github.com/psac-server/ban-server/releases)から最新ファイルをダウンロードします。
++ [こちら](https://github.com/psac-server/ban-serve/releases)から最新ファイルをダウンロードします。
 + ダウンロードしたファイルをpluginsフォルダに配置します。
 + サーバーをリロードまたは再起動します。
 + plugins/PeyangGreatBanServer/config.ymlに、tokenを書き込みます。
