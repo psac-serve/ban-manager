@@ -1,7 +1,7 @@
 # PeyangBanManager
 ## 概要
 プレイヤーのBANを別サーバーで管理するプラグインです。  
-このプラグインを使用するには、[こちら](https://github.com/psac-server/ban-server)の別サーバーが必要です。
+このプラグインを使用するには、[こちら](https://github.com/psac-serve/ban-server)の別サーバーが必要です。
 ## 元ネタ
 このプラグインは[Hypixel Staff Mod Leak](https://www.youtube.com/watch?v=SDTRO0cx0Lc)をもとに作成されており、本家を忠実に再現しております。  
 ### 注意
