@@ -13,7 +13,7 @@
 + サーバーをリロードまたは再起動します。
 + plugins/PeyangGreatBanServer/config.ymlに、tokenを書き込みます。
 ### tokenとは
-[こちら](https://github.com/psac-server/ban-server)のサーバーは認証として、Tokenを導入しております。  
+[こちら](https://github.com/psac-serve/ban-server)のサーバーは認証として、Tokenを導入しております。  
 Tokenは、１度このサーバーを起動したあと、PeyangBanServer/token.sigファイルに保存されています。
 ## コマンド
 ---
