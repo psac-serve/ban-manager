@@ -1,26 +1,16 @@
 package ml.peya.plugins.commands;
 
-import ml.peya.api.BanSection;
-import ml.peya.plugins.PeyangGreatBanManager;
-import ml.peya.plugins.utils.ErrorMessageSender;
-import ml.peya.plugins.utils.MessageEngine;
-import ml.peya.plugins.utils.PlayerUtils;
-import ml.peya.plugins.utils.TimeParser;
-import net.md_5.bungee.api.chat.ClickEvent;
-import net.md_5.bungee.api.chat.ComponentBuilder;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
-import org.bukkit.scheduler.BukkitRunnable;
+import ml.peya.api.*;
+import ml.peya.plugins.*;
+import ml.peya.plugins.utils.*;
+import net.md_5.bungee.api.chat.*;
+import org.bukkit.*;
+import org.bukkit.command.*;
+import org.bukkit.scheduler.*;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Objects;
-import java.util.UUID;
-import java.util.stream.IntStream;
+import java.text.*;
+import java.util.*;
+import java.util.stream.*;
 
 public class CommandBans implements CommandExecutor
 {
@@ -70,8 +60,9 @@ public class CommandBans implements CommandExecutor
         if (page == 0)
             page = 1;
 
+        boolean lynx = args[0].equals("-a");
         UUID player;
-        if (args[0].equals("-a"))
+        if (lynx)
             player = PlayerUtils.getPlayerAllowOffline(args[1]);
         else
             player = PlayerUtils.getPlayerAllowOffline(args[0]);
@@ -90,7 +81,7 @@ public class CommandBans implements CommandExecutor
             {
                 ArrayList<BanSection> sections = PeyangGreatBanManager.getAPI().getBans(player);
                 int count = 0;
-                int start = 10 * (finalPage - 1);
+                int start = 5 * (finalPage - 1);
 
                 String x = MessageEngine.get(
                         "message.bans.nm",
@@ -102,13 +93,14 @@ public class CommandBans implements CommandExecutor
                         }}
                 );
 
-                sender.sendMessage(x); //prefix
+                if (!lynx)
+                    sender.sendMessage(x); //prefix
 
                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
                 if (sections.size() == 0)
                     return;
-                for (int i = 0; i < start + 10; i++)
+                for (int i = 0; i < start + 5; i++)
                 {
                     count++;
                     if (i < start)
@@ -128,18 +120,35 @@ public class CommandBans implements CommandExecutor
                             ChatColor.RESET + ChatColor.YELLOW.toString() + " unbanned " + format.format(section.unbanned());
                     String unbr = !section.isUnbanned() ? "": ChatColor.ITALIC.toString() + ChatColor.WHITE + " " + section.unBanReason() + " ";
 
-                    sender.sendMessage(
-                            ChatColor.GOLD.toString() + (i + 1) + ". " +
-                                    type +
-                                    banned +
-                                    reason +
-                                    by(section.bannedBy()) +
-                                    forS +
-                                    unb +
-                                    unbr +
-                                    (section.isUnbanned() ? by(section.unBannedBy()): "")
-                    );
+                    if (!lynx)
+                        sender.sendMessage(
+                                ChatColor.GOLD.toString() + (i + 1) + ". " +
+                                        type +
+                                        banned +
+                                        reason +
+                                        by(section.bannedBy()) +
+                                        forS +
+                                        unb +
+                                        unbr +
+                                        (section.isUnbanned() ? by(section.unBannedBy()): "")
+                        );
+                    else
+                        sender.sendMessage(
+                                String.format( //reasonΩcancelledΩactiveΩlengthMilSecondsΩbannedByΩbannedDate
+                                        "[Lynx] %sΩ%bΩ%bΩ%dΩ%sΩ%d",
+                                        (section.hasStaff() ? "": "[WATCHDOG] ") +
+                                                section.getReason().replace("Ω", "ω"),
+                                        false,
+                                        section.isUnbanned(),
+                                        section.expire() == null ? null: section.expire().getTime(),
+                                        player.toString(),
+                                        section.banned().getTime()
+                                )
+                        );
                 }
+
+                if (lynx)
+                    return;
 
                 ComponentBuilder builder = new ComponentBuilder(finalPage != 1 ? ChatColor.GOLD + "[<<]": "");
                 if (finalPage != 1)
