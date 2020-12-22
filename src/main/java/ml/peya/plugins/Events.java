@@ -1,17 +1,12 @@
 package ml.peya.plugins;
 
-import ml.peya.api.BanSection;
-import ml.peya.plugins.utils.GGID;
-import ml.peya.plugins.utils.MessageEngine;
-import ml.peya.plugins.utils.TimeParser;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
-import org.bukkit.event.Listener;
-import org.bukkit.event.player.AsyncPlayerPreLoginEvent;
-import org.bukkit.scheduler.BukkitRunnable;
+import ml.peya.api.*;
+import ml.peya.plugins.utils.*;
+import org.bukkit.event.*;
+import org.bukkit.event.player.*;
+import org.bukkit.scheduler.*;
 
-import java.util.Date;
-import java.util.HashMap;
+import java.util.*;
 
 public class Events implements Listener
 {
@@ -25,7 +20,7 @@ public class Events implements Listener
         if (info == null)
             return;
 
-        final String id = info.getID();
+        final String id = info.getID().substring(info.getID().length() - 8).toUpperCase();
         final String reason = info.getReason();
         final Date expire = info.expire();
 

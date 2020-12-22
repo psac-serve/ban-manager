@@ -1,16 +1,14 @@
 package ml.peya.plugins.Bungee;
 
-import ml.peya.api.BanSection;
-import ml.peya.plugins.utils.GGID;
-import ml.peya.plugins.utils.TimeParser;
-import net.md_5.bungee.api.ProxyServer;
-import net.md_5.bungee.api.chat.ComponentBuilder;
-import net.md_5.bungee.api.event.LoginEvent;
-import net.md_5.bungee.api.plugin.Listener;
-import net.md_5.bungee.event.EventHandler;
+import ml.peya.api.*;
+import ml.peya.plugins.utils.*;
+import net.md_5.bungee.api.*;
+import net.md_5.bungee.api.chat.*;
+import net.md_5.bungee.api.event.*;
+import net.md_5.bungee.api.plugin.*;
+import net.md_5.bungee.event.*;
 
-import java.util.Date;
-import java.util.HashMap;
+import java.util.*;
 
 public class Events implements Listener
 {
@@ -36,7 +34,7 @@ public class Events implements Listener
         if (info == null)
             return;
 
-        final String id = info.getID();
+        final String id = info.getID().substring(info.getID().length() - 8).toUpperCase();
         final String reason = info.getReason();
         final Date expire = info.expire();
 
