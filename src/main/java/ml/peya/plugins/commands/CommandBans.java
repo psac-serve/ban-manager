@@ -100,7 +100,7 @@ public class CommandBans implements CommandExecutor
 
                 if (sections.size() == 0)
                     return;
-                for (int i = 0; i < start + 5; i++)
+                for (int i = 0; i < start + 5 || lynx; i++)
                 {
                     count++;
                     if (i < start)
