@@ -1,35 +1,30 @@
 package ml.peya.plugins.Bungee;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import ml.peya.api.BanManagerAPI;
-import ml.peya.api.BanSection;
-import ml.peya.plugins.PeyangGreatBanManager;
-import ml.peya.plugins.Server;
-import ml.peya.plugins.utils.SectionBuilder;
-import ml.peya.plugins.utils.UrlBuilder;
-import org.bukkit.entity.Player;
+import com.fasterxml.jackson.databind.*;
+import ml.peya.api.*;
+import ml.peya.plugins.*;
+import ml.peya.plugins.utils.*;
+import org.bukkit.entity.*;
 
-import javax.annotation.Nullable;
-import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.UUID;
+import javax.annotation.*;
+import java.net.*;
+import java.util.*;
 
 public class MinBan implements BanManagerAPI
 {
-    Server server;
     private final boolean pingTest;
-
-    @Override
-    public boolean isTested()
-    {
-        return pingTest;
-    }
+    Server server;
 
     public MinBan(String addr, String token)
     {
         this.server = new Server(addr, token);
         pingTest = server.pingTest();
+    }
+
+    @Override
+    public boolean isTested()
+    {
+        return pingTest;
     }
 
     @Override

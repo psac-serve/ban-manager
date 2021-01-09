@@ -1,12 +1,10 @@
 package ml.peya.plugins.utils;
 
-import org.bukkit.Bukkit;
-import org.bukkit.OfflinePlayer;
-import org.bukkit.craftbukkit.v1_12_R1.CraftOfflinePlayer;
-import org.bukkit.entity.Player;
+import org.bukkit.*;
+import org.bukkit.craftbukkit.v1_12_R1.*;
+import org.bukkit.entity.*;
 
-import java.util.Random;
-import java.util.UUID;
+import java.util.*;
 
 public class PlayerUtils
 {

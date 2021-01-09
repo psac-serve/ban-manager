@@ -1,15 +1,11 @@
 package ml.peya.plugins;
 
-import ml.peya.api.BanManagerAPI;
-import ml.peya.plugins.commands.CommandBan;
-import ml.peya.plugins.commands.CommandBans;
-import ml.peya.plugins.commands.CommandHelp;
-import ml.peya.plugins.commands.CommandTempBan;
-import ml.peya.plugins.commands.CommandUnban;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.plugin.java.JavaPlugin;
+import ml.peya.api.*;
+import ml.peya.plugins.commands.*;
+import org.bukkit.configuration.file.*;
+import org.bukkit.plugin.java.*;
 
-import java.util.logging.Logger;
+import java.util.logging.*;
 
 public class PeyangGreatBanManager extends JavaPlugin
 {//いろいろめんどいのでJavaDoc見送り
@@ -43,7 +39,7 @@ public class PeyangGreatBanManager extends JavaPlugin
 
         saveDefaultConfig();
         config = getConfig();
-        
+
         ban = new BAN(config.getString("server.addr"), config.getString("server.token"));
 
         isBungee = config.getBoolean("bungeecord");

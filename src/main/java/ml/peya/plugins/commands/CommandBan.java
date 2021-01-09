@@ -1,22 +1,14 @@
 package ml.peya.plugins.commands;
 
-import ml.peya.plugins.PeyangGreatBanManager;
-import ml.peya.plugins.utils.ErrorMessageSender;
-import ml.peya.plugins.utils.MessageEngine;
-import ml.peya.plugins.utils.PlayerUtils;
-import org.bukkit.Bukkit;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
-import org.bukkit.command.ConsoleCommandSender;
-import org.bukkit.scheduler.BukkitRunnable;
+import ml.peya.plugins.*;
+import ml.peya.plugins.utils.*;
+import org.bukkit.*;
+import org.bukkit.command.*;
+import org.bukkit.scheduler.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.UUID;
+import java.util.*;
 
-import static ml.peya.plugins.utils.MessageEngine.get;
-import static ml.peya.plugins.utils.MessageEngine.pair;
+import static ml.peya.plugins.utils.MessageEngine.*;
 
 public class CommandBan implements CommandExecutor
 {

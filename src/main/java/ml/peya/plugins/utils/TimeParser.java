@@ -1,15 +1,14 @@
 package ml.peya.plugins.utils;
 
-import ml.peya.plugins.Bungee.BungeeMessageEngine;
+import ml.peya.plugins.Bungee.*;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.*;
+import java.util.regex.*;
 
 public class TimeParser
 {
 
+    static String regex = "^[0-9]+((year|y)|(month|mo)|(day|d)|(hour|h)|(minute|min|m)|(second|sec|s))(s)?$";
     private static String d;
     private static String h;
     private static String m;
@@ -34,8 +33,6 @@ public class TimeParser
         }
 
     }
-
-    static String regex = "^[0-9]+((year|y)|(month|mo)|(day|d)|(hour|h)|(minute|min|m)|(second|sec|s))(s)?$";
 
     public static Date convert(String... args)
     {

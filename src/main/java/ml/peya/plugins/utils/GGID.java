@@ -1,6 +1,6 @@
 package ml.peya.plugins.utils;
 
-import java.util.Random;
+import java.util.*;
 
 public class GGID
 {

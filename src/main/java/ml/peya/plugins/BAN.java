@@ -1,40 +1,32 @@
 package ml.peya.plugins;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import ml.peya.api.BanManagerAPI;
-import ml.peya.api.BanSection;
-import ml.peya.plugins.utils.MessageEngine;
-import ml.peya.plugins.utils.PlayerUtils;
-import ml.peya.plugins.utils.SectionBuilder;
-import ml.peya.plugins.utils.TimeParser;
-import ml.peya.plugins.utils.UrlBuilder;
-import org.apache.commons.lang3.RandomStringUtils;
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
-import org.bukkit.scheduler.BukkitRunnable;
+import com.fasterxml.jackson.databind.*;
+import ml.peya.api.*;
+import ml.peya.plugins.utils.*;
+import org.apache.commons.lang3.*;
+import org.bukkit.*;
+import org.bukkit.entity.*;
+import org.bukkit.scheduler.*;
 
-import javax.annotation.Nullable;
-import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.UUID;
+import javax.annotation.*;
+import java.net.*;
+import java.util.*;
 
 public class BAN implements BanManagerAPI
 {
-    Server server;
     private final boolean pingTest;
-
-    @Override
-    public boolean isTested()
-    {
-        return pingTest;
-    }
+    Server server;
 
     public BAN(String addr, String token)
     {
         this.server = new Server(addr, token);
         pingTest = server.pingTest();
+    }
+
+    @Override
+    public boolean isTested()
+    {
+        return pingTest;
     }
 
     @Override

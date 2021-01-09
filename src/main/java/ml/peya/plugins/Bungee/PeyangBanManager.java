@@ -1,20 +1,19 @@
 package ml.peya.plugins.Bungee;
 
-import ml.peya.api.BanManagerAPI;
-import net.md_5.bungee.api.plugin.Plugin;
-import net.md_5.bungee.config.Configuration;
+import ml.peya.api.*;
+import net.md_5.bungee.api.plugin.*;
+import net.md_5.bungee.config.*;
 
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.io.*;
+import java.util.logging.*;
 
 public class PeyangBanManager extends Plugin
 {
 
     public static Configuration config;
-    private static PeyangBanManager proxy;
     public static BanManagerAPI api;
     public static Logger logger;
+    private static PeyangBanManager proxy;
 
     public static PeyangBanManager getPlugin()
     {

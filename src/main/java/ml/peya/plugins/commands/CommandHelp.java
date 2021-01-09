@@ -1,17 +1,12 @@
 package ml.peya.plugins.commands;
 
-import ml.peya.plugins.utils.ErrorMessageSender;
-import ml.peya.plugins.utils.MessageEngine;
-import net.md_5.bungee.api.ChatColor;
-import net.md_5.bungee.api.chat.ClickEvent;
-import net.md_5.bungee.api.chat.ComponentBuilder;
-import net.md_5.bungee.api.chat.HoverEvent;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
+import ml.peya.plugins.utils.*;
+import net.md_5.bungee.api.*;
+import net.md_5.bungee.api.chat.*;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
 
 public class CommandHelp implements CommandExecutor
 {

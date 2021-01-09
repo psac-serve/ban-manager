@@ -1,8 +1,8 @@
 package ml.peya.plugins.utils;
 
-import org.bukkit.command.CommandSender;
+import org.bukkit.command.*;
 
-import static ml.peya.plugins.utils.MessageEngine.get;
+import static ml.peya.plugins.utils.MessageEngine.*;
 
 public class ErrorMessageSender
 {

@@ -46,6 +46,11 @@ public class CommandBans implements CommandExecutor
         }
     }
 
+    private static String by(String name)
+    {
+        return ChatColor.RESET + ChatColor.YELLOW.toString() + "by " + name;
+    }
+
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
     {
@@ -175,10 +180,5 @@ public class CommandBans implements CommandExecutor
         }.runTaskAsynchronously(PeyangGreatBanManager.getPlugin());
 
         return true;
-    }
-
-    private static String by(String name)
-    {
-        return ChatColor.RESET + ChatColor.YELLOW.toString() + "by " + name;
     }
 }

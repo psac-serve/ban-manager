@@ -1,6 +1,6 @@
 package ml.peya.api;
 
-import java.util.Date;
+import java.util.*;
 
 public interface BanSection
 {
