@@ -1,13 +1,11 @@
 package ml.peya.plugins.Bungee;
 
-import net.md_5.bungee.api.ChatColor;
-import net.md_5.bungee.config.Configuration;
-import net.md_5.bungee.config.ConfigurationProvider;
-import net.md_5.bungee.config.YamlConfiguration;
+import net.md_5.bungee.api.*;
+import net.md_5.bungee.config.*;
 
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
+import java.io.*;
+import java.nio.charset.*;
+import java.util.*;
 
 public class BungeeMessageEngine
 {
@@ -18,7 +16,10 @@ public class BungeeMessageEngine
 
     public static void initialize()
     {
-        try (InputStreamReader reader = new InputStreamReader(PeyangBanManager.class.getResourceAsStream("/message.yml"), StandardCharsets.UTF_8))
+        try (InputStreamReader reader = new InputStreamReader(
+                PeyangBanManager.class.getResourceAsStream("/" + PeyangBanManager.config.getString("messageFile")),
+                StandardCharsets.UTF_8
+        ))
         {
             config = ConfigurationProvider.getProvider(YamlConfiguration.class).load(reader);
         }

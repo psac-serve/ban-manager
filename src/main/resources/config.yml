@@ -9,6 +9,8 @@ server:
 #BungeeCord(Waterfall)の有無
 bungeecord: false
 
+messageFile: message-ja.yml
+
 #きっく！
 kick:
   #キックまでのメッセージが流れてからのラグ(秒

@@ -35,6 +35,7 @@ public class Events implements Listener
             return;
 
         final String id = info.getID().substring(info.getID().length() - 8).toUpperCase();
+        System.out.println(id);
         final String reason = info.getReason();
         final Date expire = info.expire();
 

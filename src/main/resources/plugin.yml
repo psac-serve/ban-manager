@@ -1,6 +1,6 @@
 name: PeyangGreatBanManager
 main: ml.peya.plugins.PeyangGreatBanManager
-version: 1.0
+version: 1.1
 prefix: PeyangGreatBanManager
 load: POSTWORLD
 author: Peyang

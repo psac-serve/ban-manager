@@ -1,14 +1,12 @@
 package ml.peya.plugins.utils;
 
-import ml.peya.plugins.PeyangGreatBanManager;
-import org.bukkit.ChatColor;
-import org.bukkit.configuration.file.YamlConfiguration;
+import ml.peya.plugins.*;
+import org.bukkit.*;
+import org.bukkit.configuration.file.*;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
+import java.io.*;
+import java.nio.charset.*;
+import java.util.*;
 
 public class MessageEngine
 {
@@ -30,7 +28,7 @@ public class MessageEngine
 
         try
         {
-            InputStream in = PeyangGreatBanManager.class.getResourceAsStream("/message.yml");
+            InputStream in = PeyangGreatBanManager.class.getResourceAsStream("/" + PeyangGreatBanManager.config.getString("messageFile"));
             BufferedReader reader = new BufferedReader(new InputStreamReader(in, StandardCharsets.UTF_8));
 
             YamlConfiguration config = YamlConfiguration.loadConfiguration(reader);

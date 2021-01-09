@@ -1,0 +1,95 @@
+base:
+  prefix: "%%aqua%%-----%%green%%[%%blue%%PeyangGreatBanManager%%green%%]%%aqua%%-----"
+  day: "d"
+  hour: "h"
+  minutes: "m"
+  seconds: "s"
+
+error:
+  minArgs: "%%red%%Error: Not enough arguments. /%%label%% help to see help."
+  playerNotFound: "%%red%%Error: Specified player not found."
+  unknownSQLError: "%%red%%Error: Unknown SQL error has occurred. This will report to admin."
+  notHavePermission: "%%red%%Error: Invalid permission!"
+  invalidArgument: "%%red%%Error：引数の数が不正です。/banhelp でヘルプを見てください。"
+  processing: "%%red%%Error：現在処理中です。"
+  alreadyBanned: "%%red%%Error：Specified player has been banned."
+  notBanned: "%%red%%Error：Specified player not banned."
+  pybans:
+    notPage: "%%red%%Error: No information to see."
+  bans:
+    unknownSearchType: "%%red%%Error: Unknown search type."
+    databaseInfoNotFound: "%%red%%Error: The information not found in the databases."
+command:
+  help:
+    ban: "\
+        %%aqua%%/ban %%dark_aqua%%<PlayerName> %%dark_purple%% [Reason...]\n\
+        %%green%%Permanently Ban the player.\n\
+        "
+    tempban: "\
+        %%aqua%%/tempban %%dark_aqua%%<Expire time> <PlayerName> %%dark_purple%% [Reason...]\n\
+        %%green%%Temporary Ban player.\n\
+        %%green%%The period specification is 8y 1mo 0d 9h 3m 1s, to ban for 8 years, 1 month, 9 hours, 3 minutes, and 1 second.\n\
+        "
+    unban: "\
+        %%aqua%%/unban %%dark_aqua%%<PlayerName> %%dark_purple%% [理由...]\n\
+        %%green%%Unban the player.\n\
+        "
+    bans: "\
+        %%aqua%%/bans %%dark_aqua%%<PlayerName> %%dark_purple%% [ページ]\n\
+        %%green%%View the BAN history of the specified player.\n\
+        "
+    banhelp: "\
+        %%aqua%%/banhelp %%dark_purple%%[Command...]\n\
+        %%green%% Show the help.
+        "
+
+  shelp:
+    ban: "%%aqua%%/ban %%dark_aqua%%<PlayerName> %%dark_purple%% [Reason...]"
+    tempban: "%%aqua%%/tempban %%dark_aqua%%<Expire time> <PlayerName> %%dark_purple%% [Reason...]"
+    unban: "%%aqua%%/unban %%dark_aqua%%<PlayerName> %%dark_purple%% [Reason...]"
+    banhelp: "%%aqua%%/banhelp %%dark_purple%%[Command...]"
+    bans: "%%aqua%%/bans %%dark_aqua%%<PlayerName> %%dark_purple%% [Page]"
+
+message:
+  bans:
+    nm: "%%gold%%--- Bans for %%name%% (Page %%s%% of %%mx%%) ---"
+  ban:
+    playerBanned: "%%red%%Banned %%player%%"
+  unban:
+    playerUnBanned: "%%green%%Unbanned %%player%%"
+
+
+kick:
+  broadcast: "\
+    %%red%%%%bold%%A player has been removed for your game for hacking or abuse.\n\
+    %%reset6%%%%aqua%%Thanks for reporting it!\
+    "
+
+  broadcastAdmin: "\
+    %%aqua%%Player%%white%%：%%blue%%%%name%%\n\
+    %%aqua%%UUID%%white%%：%%blue%%%%uuid%%\
+    "
+
+  reason: "\
+    %%red%%Youare kicked from this server!\n\
+    \n\
+    %%gray%%Reason: %%white%%%%reason%% %%gray%%%%italic%%[GG-%%ggid%%]%%reset%%\n\
+    \n\
+    %%gray%%ID:%%white%%%%id%%\
+    "
+ban:
+  permReason: "\
+    %%red%%You are permanently banned from this server!\n\
+    \n\
+    %%gray%%Reason：%%white%%%%reason%% %%gray%%%%italic%%[GG-%%ggid%%]%%reset%%\n\
+    \n\
+    %%gray%%Ban ID：%%white%%%%id%%\
+    "
+
+  tempReason: "\
+  %%red%%You are temporarily banned for %%white%%%%date%% %%red%%from this server!\n\
+  \n\
+  %%gray%%Reason: %%white%%%%reason%% %%gray%%%%italic%%[GG-%%ggid%%]%%reset%%\n\
+  \n\
+  %%gray%%Ban id: %%white%%%%id%%\
+  "

@@ -5,3 +5,5 @@ server:
   addr: "localhost:810"
   #認証用トークン
   token: ""
+
+messageFile: message-ja.yml
