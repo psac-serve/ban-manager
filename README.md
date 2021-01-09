@@ -123,7 +123,7 @@ Tokenは、１度このサーバーを起動したあと、PeyangBanServer/token
 #### 権限概要
 /bans コマンドの使用権限です。
 
-##謝辞
+## 謝辞
 このプラグインは、以下のAPI/ライブラリを使用しております。
 + [P2P-Develop/PeyangSuperLibrary](https://github.com/P2P-Develop/PeyangSuperLibrary)
 + [FasterXML/jackson](https://github.com/FasterXML/jackson)
