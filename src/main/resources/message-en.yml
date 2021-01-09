@@ -71,7 +71,7 @@ kick:
     "
 
   reason: "\
-    %%red%%Youare kicked from this server!\n\
+    %%red%%You are kicked from this server!\n\
     \n\
     %%gray%%Reason: %%white%%%%reason%% %%gray%%%%italic%%[GG-%%ggid%%]%%reset%%\n\
     \n\
