@@ -33,6 +33,9 @@
                             <minimizeJar>true</minimizeJar>
                             <artifactSet>
                                 <includes>
+                                    <include>com.fasterxml.jackson.core:*</include>
+                                    <include>org.msgpack:*</include>
+                                    <include>com.github.P2P-Develop:*</include>
                                 </includes>
                             </artifactSet>
                         </configuration>
