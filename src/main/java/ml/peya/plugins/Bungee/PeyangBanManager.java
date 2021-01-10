@@ -40,7 +40,11 @@ public class PeyangBanManager extends Plugin
 
         }
 
-        api = new MinBan(config.getString("server.addr"), config.getString("server.token"));
+        api = new MinBan(
+                config.getString("server.addr"),
+                config.getString("server.token"),
+                config.getBoolean("server.msgpack")
+        );
 
         if (api.isTested())
             logger.info("PingTest has completed successfully.");

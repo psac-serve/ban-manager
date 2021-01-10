@@ -35,10 +35,9 @@ public class Events implements Listener
             return;
 
         final String id = info.getID().substring(info.getID().length() - 8).toUpperCase();
-        System.out.println(id);
         final String reason = info.getReason();
         final Date expire = info.expire();
-
+        System.out.println("Banned player joined: {ID: " + id + ", reason: " + reason + ", name: " + e.getConnection().getName() + "}");
         final String type;
 
         final HashMap<String, Object> pair = new HashMap<>();

@@ -13,12 +13,14 @@ import java.util.*;
 public class MinBan implements BanManagerAPI
 {
     private final boolean pingTest;
+    private boolean msgpack;
     Server server;
 
-    public MinBan(String addr, String token)
+    public MinBan(String addr, String token, boolean msgpack)
     {
         this.server = new Server(addr, token);
         pingTest = server.pingTest();
+        this.msgpack = msgpack;
     }
 
     @Override
@@ -30,7 +32,7 @@ public class MinBan implements BanManagerAPI
     @Override
     public void ban(UUID player, String bannedBy, String reason, boolean hasStaff, @Nullable Date date)
     {
-        JsonNode node = server.quickAccess("/ban", "PUT", UrlBuilder.ban(player, bannedBy, reason, hasStaff, date));
+        JsonNode node = server.quickAccess("/ban", "PUT", UrlBuilder.ban(player, bannedBy, reason, hasStaff, date), msgpack);
         if (!node.get("success").asBoolean())
             PeyangGreatBanManager.getPlugin().logger.warning("Failed to ban the player: " + node.get("cause").asText());
     }
@@ -41,11 +43,11 @@ public class MinBan implements BanManagerAPI
 
         try
         {
-            server.quickAccess("/unban", "DELETE", "uuid=" + player + "&reason=" + URLEncoder.encode(reason, "UTF-8") + "&by=" + unBannedBy);
+            server.quickAccess("/unban", "DELETE", "uuid=" + player + "&reason=" + URLEncoder.encode(reason, "UTF-8") + "&by=" + unBannedBy, msgpack);
         }
         catch (Exception e)
         {
-            server.quickAccess("/unban", "DELETE", "uuid=" + player + "&reason=UnBanned%20by%20an%20operator." + "&by=" + unBannedBy);
+            server.quickAccess("/unban", "DELETE", "uuid=" + player + "&reason=UnBanned%20by%20an%20operator." + "&by=" + unBannedBy, msgpack);
         }
 
     }
@@ -66,7 +68,7 @@ public class MinBan implements BanManagerAPI
     public BanSection getBanInfo(UUID uuid)
     {
 
-        JsonNode node = server.quickAccess("/getban", "GET", "uuid=" + uuid.toString());
+        JsonNode node = server.quickAccess("/getban", "GET", "uuid=" + uuid.toString(), msgpack);
 
         if (node == null || !node.get("success").asBoolean())
             return null;

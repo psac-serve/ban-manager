@@ -1,10 +1,10 @@
 package ml.peya.plugins;
 
 import com.fasterxml.jackson.databind.*;
+import org.msgpack.jackson.dataformat.*;
 
 import java.io.*;
 import java.net.*;
-import java.nio.charset.*;
 
 public class Server
 {
@@ -45,14 +45,16 @@ public class Server
         return success;
     }
 
-    public JsonNode quickAccess(String func, String method, String body)
+    public JsonNode quickAccess(String func, String method, String body, boolean msgpack)
     {
         HttpURLConnection connection = null;
         try
         {
             String url = addr + func;
+            if (!msgpack)
+                body += "&raw=true";
             if (method.equals("GET"))
-                url = url + "?" + body;
+                url += "?" + body;
             connection = (HttpURLConnection) new URL("http://" + url).openConnection();
             connection.setConnectTimeout(200);
             connection.setRequestMethod(method);
@@ -71,11 +73,12 @@ public class Server
                 }
             }
 
-            String result = streamToString(connection.getInputStream());
+            byte[] result = streamToBytes(connection.getInputStream());
 
-            return new ObjectMapper().readTree(result);
-
-
+            if (msgpack)
+                return new ObjectMapper(new MessagePackFactory()).readValue(result, JsonNode.class);
+            else
+                return new ObjectMapper().readTree(result);
         }
         catch (Exception e)
         {
@@ -83,9 +86,12 @@ public class Server
             {
                 try
                 {
-                    String result = streamToString(connection.getErrorStream());
+                    byte[] result = streamToBytes(connection.getErrorStream());
 
-                    return new ObjectMapper().readTree(result);
+                    if (msgpack)
+                        return new ObjectMapper(new MessagePackFactory()).readValue(result, JsonNode.class);
+                    else
+                        return new ObjectMapper().readTree(result);
                 }
                 catch (Exception ex)
                 {
@@ -101,22 +107,20 @@ public class Server
         return null;
     }
 
-    private String streamToString(InputStream stream)
+    private byte[] streamToBytes(InputStream stream)
     {
         try
         {
-            StringBuilder sb = new StringBuilder();
-            String line;
-            BufferedReader br = new BufferedReader(new InputStreamReader(stream, StandardCharsets.UTF_8));
-            while ((line = br.readLine()) != null)
-                sb.append(line);
-
-            stream.close();
-            return sb.toString();
+            ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+            int nRead;
+            byte[] data = new byte[8192];
+            while ((nRead = stream.read(data, 0, data.length)) != -1)
+                buffer.write(data, 0, nRead);
+            return buffer.toByteArray();
         }
         catch (Exception e)
         {
-            return "{\"success\":false,\"cause\":\"Failed to parsing result.\"}";
+            return new byte[0];
         }
     }
 }

@@ -5,5 +5,7 @@ server:
   addr: "localhost:810"
   #認証用トークン
   token: ""
+  #Msgpackを使用するかどうか
+  msgpack: true
 
 messageFile: message-ja.yml

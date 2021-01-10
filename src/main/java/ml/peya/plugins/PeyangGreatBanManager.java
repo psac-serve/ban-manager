@@ -40,7 +40,11 @@ public class PeyangGreatBanManager extends JavaPlugin
         saveDefaultConfig();
         config = getConfig();
 
-        ban = new BAN(config.getString("server.addr"), config.getString("server.token"));
+        ban = new BAN(
+                config.getString("server.addr"),
+                config.getString("server.token"),
+                config.getBoolean("server.msgpack")
+        );
 
         isBungee = config.getBoolean("bungeecord");
 
